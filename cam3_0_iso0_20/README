@@ -1,0 +1,169 @@
+------------------------------------------------------------------------
+
+                 CAM3_0 with water isotopes
+
+------------------------------------------------------------------------
+
+PROBLEMS
+
+  QNEG triggers for HDO and HTO after vertical diffusion ???
+
+
+VERSION LOG 
+
+cam3_0_iso0_20 David Noone <dcn@colorado.edu> - Tue May 17 18:03:13 MDT 2005
+        Impliments CLM isotope scheme for water - no fractionation.
+
+cam3_0_iso0_19  David Noone <dcn@colorado.edu> - Sat Dec  4 12:21:09 MST 2004
+        Output tracer advectieve and total tendencies (on master list).
+
+cam3_0_iso0_18  David Noone <dcn@colorado.edu> - Wed Oct 20 13:38:53 MDT 2004
+        Base tuning selcted for HDO and H218O. Added (optional) output for historgrams
+        of vapour and total water isotopic composition (untested for long run).
+
+cam3_0_iso0_17  David Noone <dcn@colorado.edu> - Wed Sep 15 11:06:25 MDT 2004
+        Tuning fiddles - fiddles with O17 and HTO fractionation (which are still wrong)
+
+cam3_0_iso0_16  David Noone <dcn@colorado.edu> - Wed Sep  8 16:26:12 MDT 2004
+        Schemes "fsnk" uniformly in the three condensation routines
+        (calls to dicm). All tunables now in external routine (wtrc_camtune)
+
+cam3_O_iso0_15  David Noone <dcn@colorado.edu> - Fri Aug 13 12:08:05 MDT 2004
+        (Reimplimentation of 0_14 changes)
+        NEEDS exponential form for feq in dicm.
+        NEEDS downdraft.	( <-- What did I mean by this? )
+        All fractionation now done as external calls to water_isotope module 
+        (changes to zm evap, zm downdrafts and cloud liquid)
+
+cam3_0_iso0_14  David Noone <dcn@colorado.edu> - Fri Aug  6 17:13:59 MDT 2004
+        Reimplimented fractionation for H217O and HTO (now based on H218O and HDO)
+        Reimplimented methane oxidation source for HDO, based on McCarthy, with
+        additional effects for oxygen state.
+        Now allow some tunable fraction of cloud ice to equilibrate.
+        Reimplimented fractionation to properly account for partial equilibration.
+
+cam3_0_iso0_13  David Noone <dcn@colorado.edu> - Tue Aug  3 11:18:13 MDT 2004
+        Allow precipitation formation from mixed cloud in large scale condensation, 
+        mixes with cloud below, then uses partial removal. 
+        Bug fixes for kinetic effects. 
+        Now use full "kmol" calulation based on computer ustar.
+        Changed diffusivities to "cappa" (kinetics theory) numbers.
+        Fixed fractionation factors for H217O and HTO - also turned on.
+        (bug fix in tritium decay)
+
+cam3_0_iso0_12  David Noone <dcn@colorado.edu> - Fri Jul 30 11:45:32 MDT 2004
+        Support for finte volume core.
+        Minor bug fix "tcld" and "fice" in moist convection.
+        "Feature fix" for wtrc_check to do only ncol, rather than pcols.
+        (also changes Rstd back to 1)
+
+cam3_0_iso0_11  David Noone <dcn@colorado.edu> - Tue Jul 27 11:34:45 MDT 2004
+	CAM MOD - allow convective schemes to decide on "ice/liquid" and "rain/snow"
+        these are now passed to zm_detrain, and zm_evap independently.
+        Inputs to energy checks modified in tphys to accomodate this
+        Minor fixes for restart/initial history files.
+
+cam3_0_iso0_10  David Noone <dcn@colorado.edu> - Sun Jul 25 20:19:15 MDT 2004
+        CMF and ZMC plume temperature as in updrafts/downdrafts.
+        ZMC dicm explictly accounts for entrainment and detrainment - 
+         which simplifies the code.
+        (wtrc_land water scheme fixed.)
+
+cam3_0_iso0_9  David Noone <dcn@colorado.edu> - Wed Jul 21 15:25:52 MDT 2004
+        Changed fractionation scheme for nonentraining, iterative multi-phase isotope
+        model in cldcond, cmfmca and zmc_conv.
+        Removed various debugging stops.
+        limit qu > 0 and ql > 0, and compute cu from qu budget in cldprp.
+
+cam3_0_iso0_8  David Noone <dcn@colorado.edu> - Tue Jul 20 13:30:58 MDT 2004
+        Reformulated tracer ZM scheme to work with fluxes (thus conserving mass!)
+        Added traps in ZM code to limit problems occuring with qu < 0 
+          (note possible fix - use simple mean rather than log. interp in cldprp, 
+           another option is to redifine convective top where hu-h* is strange)
+          (also, this needs a correction for water tracer tendencies)
+          (notice too, that some of the conservation comes from cam3 increasing 
+           qmin to 1.e-12 (from 1.e-18) for Q)
+        Limited ZM downdrafts to ensure pflx > 0, always. 
+        Added perfect restart IO
+        Added tracer outpout to "initial" history file.
+        Added simple land scheme, not tested, not used for tracers (diagnostic only)
+
+cam3_0_iso0_7   David Noone <dcn@colorado.edu> - Tue Jul 13 11:35:07 MDT 2004
+        Added diagnostic tests for H2O (v, l and i) must match prognostic.
+        Added sea ice scheme. Simple land scheme (assign smow).
+        Define all as "wet" tracers, with mod in dp_coupling for treating
+        vapour phase explicitly as dry (even though it's defined as wet like Q)
+        [This means vertical diffusion is done correctly wet]
+         
+cam3_0_iso0_6   David Noone <dcn@colorado.edu> - Mon Jul 12 16:33:51 MDT 2004
+        ZM convection tracers from CCM3, with reevap and detraining liquid.
+        T5 and T31 tests "OK" but problems....time for serious debugging.
+
+cam3_0_iso0_5   David Noone <dcn@colorado.edu> - Mon Jul 12 11:00:08 MDT 2004
+        Puts detrained cloud from Hack into cloud liquid.
+        Does reevaporation for falling Hack precip.
+        Transports tracer liquid and ice due to convection.
+
+cam3_0_iso0_4   David Noone <dcn@colorado.edu> - Mon Jul  5 11:36:34 MDT 2004
+	"Hack" moist convetcive adjustmeny.
+
+cam3_0_iso0_3   David Noone <dcn@colorado.edu> - Sat Jul  3 11:07:54 MDT 2004
+        Cloud water budget with precipitation production.
+        (Isotope scheme needs some reworking - may be mass imbalance for ice and liquid)
+
+cam3_0_iso0_2	David Noone <dcn@colorado.edu> - Fri Jul  2 15:08:14 MDT 2004
+        BUGFIX: qbot correctly passed for srfxfer
+        Archived fluxes up and down only for vapour phase (total for all phases)
+        Archive tracer precipitation (vapour index) to history file
+        dadadj now adjusts all tracers
+        isotopic equilibrium between cloud ice and vapour (wtrc_cldliq_equilibrate)
+        non-fractionating sedimentation flux
+
+cam3_0_iso0_1	David Noone <dcn@colorado.edu> - Thu Jul  1 20:04:07 MDT 2004
+        Ocean sources with fractionation, so vapour state equilibrates.
+        Archive surface fluxes up and down.
+
+cam3_0_iso0_0	David Noone <dcn@colorado.edu> - Thu Jul  1 20:03:56 MDT 2004
+	tracer infrastructure
+
+
+
+------------------------------------------------------------------------
+IMPLIMENTATION STRATERGY
+
+(migration of offline, ccm3.6.6, and cam2_0_2_dev22 tracer code to cam3_0)
+
+DONE	tracer infrastructure	
+DONE	evaporative source over ocean
+DONE	equilibration of liquid and cloud water
+DONE	cloud scale sedimentation
+DONE	Large scale (cloud scale) condenation [needs further tests]
+DONE	Hack convective sink
+DONE(?)	convective reevaporation
+DONE	ZM convective sink
+DONE(?)	(convective reevaporation)
+DONE	seaice source
+DONE 	prescribed land source
+DONE   revise fractionation schemes (this might be science?)
+DONE 	simple land source
+
+WISHLIST ....
+DONE	independent ice/liquid budgets in convection
+	independent snow/rain budgets in convection (clm, cism, zm_evap)
+ 	true (CLM) land source
+	ocean model
+(done)	"cappa" diffusivities
+        prognostic (or diagnostic?) skin temperature
+	conmvective dropsize estimateion for equilibraion rate
+DONE	methane source
+DONE	tritium decay
+(done)	tritium cycle  - not checked
+(done)	h2o17 cycle - not checked, no MIF
+	mass independent fractionation
+
+
+------------------------------------------------------------------------
+
+
+
+--

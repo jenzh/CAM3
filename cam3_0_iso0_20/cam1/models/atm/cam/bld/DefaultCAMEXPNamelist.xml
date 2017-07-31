@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+
+<!--
+
+	DefaultCAMEXPNamelist.xml				May/2002
+
+	Values to use by default for creation of CAM model namelists.
+	The element names are the same as the corresponding namelist
+	variables.  Values that depend on the model configuration use
+	attributes to express the dependency.  The recognized attributes
+	are: DYNAMICS, RESOLUTION, PLEV, and PHYSICS.
+
+	$Id: DefaultCAMEXPNamelist.xml,v 1.1.6.28.2.1 2004/06/21 17:57:41 mvr Exp $
+-->
+<camexp>
+
+<!-- Root directory of initial and boundary datasets from CAM distribution -->
+<csmdata>/fs/cgd/csm/inputdata</csmdata>
+
+<!-- Case name -->
+<caseid>camrun</caseid>
+
+<!-- Run-type of simulation -->
+<RUNTYPE>initial</RUNTYPE>
+<nsrest RUNTYPE="initial">0</nsrest>
+<nsrest RUNTYPE="restart">1</nsrest>
+<nsrest RUNTYPE="branch" >3</nsrest>
+
+<!-- The default filenames are given relative to the root directory
+     for the atmospheric data in the CAM distribution, i.e.,
+     {csmdata} where {csmdata} is the content of the
+     csmdata element.
+-->
+
+<!-- Version of initial files to use by default -->
+<!-- Note:  this feature is no longer used, but -->
+<!-- may be used again.                         -->
+<ncdata_vers>1</ncdata_vers>
+
+<!-- Initial condition files (relative to {csmdata}) -->
+<ncdata DYNAMICS="eul" RESOLUTION="128x256" PLEV="26" PHYSICS="cam1"   OCEANMODEL="dom" ncdata_vers="1">
+atm/cam2/inic/gaus/cami_0000-09-01_128x256_L26_c040422.nc</ncdata>
+<ncdata                RESOLUTION="64x128"  PLEV="26" PHYSICS="cam1" OCEANMODEL="dom" ncdata_vers="1">
+atm/cam2/inic/gaus/cami_0000-09-01_64x128_L26_c030918.nc</ncdata>
+<ncdata DYNAMICS="eul" RESOLUTION="48x96"   PLEV="26" PHYSICS="cam1"   OCEANMODEL="dom" ncdata_vers="1">
+atm/cam2/inic/gaus/cami_0000-09-01_48x96_L26_c040420.nc</ncdata>
+<ncdata                RESOLUTION="32x64"   PLEV="26" PHYSICS="cam1" ncdata_vers="1">
+atm/cam2/inic/gaus/cami_0000-09-01_32x64_L26_c030918.nc</ncdata>
+<ncdata                RESOLUTION="8x16"    PLEV="26" PHYSICS="cam1"    ncdata_vers="1">
+atm/cam2/inic/gaus/cami_0000-09-01_8x16_L26_c030918.nc</ncdata>
+<ncdata DYNAMICS="fv"  RESOLUTION="2x2.5"   PLEV="26" PHYSICS="cam1"   OCEANMODEL="dom" ncdata_vers="1">
+atm/cam2/inic/fv/cami_0000-09-01_2x2.5_L26_c040615.nc</ncdata>
+<ncdata DYNAMICS="fv"  RESOLUTION="4x5"     PLEV="26" PHYSICS="cam1" ncdata_vers="1">
+atm/cam2/inic/fv/cami_0000-09-01_4x5_L26_c031217.nc</ncdata>
+<ncdata DYNAMICS="fv"  RESOLUTION="10x15"   PLEV="26" PHYSICS="cam1" ncdata_vers="1">
+atm/cam2/inic/fv/cami_0000-01-01_10x15_L26_c030918.nc</ncdata>
+
+<!-- Radiation absorptivity/emissivity lookup table dataset (relative to {csmdata}) -->
+<absems_data>atm/cam2/rad/abs_ems_factors_fastvx.c030508.nc</absems_data>
+
+<!-- Volcanic Aerosol Mass dataset (relative to {csmdata}) -->
+<bndtvvolc>atm/cam2/rad/VolcanicMass_1870-1999_64x1_L18_c040115.nc</bndtvvolc>
+
+<!-- simulated ISCCP dataset  -->
+<isccpdata>atm/cam2/rad/isccp.tautab_invtau.nc</isccpdata>
+
+<!-- Aerosol Mass climatology dataset (relative to {csmdata}) -->
+<bndtvaer              RESOLUTION="128x256"   PHYSICS="cam1"   >
+atm/cam2/rad/AerosolMass_V_128x256_clim_c031022.nc</bndtvaer>
+<bndtvaer              RESOLUTION="64x128"   PHYSICS="cam1"   >
+atm/cam2/rad/AerosolMass_V_64x128_clim_c031022.nc</bndtvaer>
+<bndtvaer              RESOLUTION="48x96"   PHYSICS="cam1"   >
+atm/cam2/rad/AerosolMass_V_48x96_clim_c031029.nc</bndtvaer>
+<bndtvaer              RESOLUTION="32x64"   PHYSICS="cam1"   >
+atm/cam2/rad/AerosolMass_V_32x64_clim_c031022.nc</bndtvaer>
+<bndtvaer              RESOLUTION="8x16"   PHYSICS="cam1"   >
+atm/cam2/rad/AerosolMass_V_8x16_clim_c031022.nc</bndtvaer>
+<bndtvaer              RESOLUTION="2x2.5"   PHYSICS="cam1"   >
+atm/cam2/rad/AerosolMass_V_2x2.5_clim_c031022.nc</bndtvaer>
+<bndtvaer              RESOLUTION="4x5"   PHYSICS="cam1"   >
+atm/cam2/rad/AerosolMass_V_4x5_clim_c031022.nc</bndtvaer>
+<bndtvaer              RESOLUTION="10x15"   PHYSICS="cam1"   >
+atm/cam2/rad/AerosolMass_V_10x15_clim_c031022.nc</bndtvaer>
+
+<!-- Time-variant solar constant boundary dataset (relative to {csmdata}) -->
+<bndtvscon>atm/cam2/rad/scon_1870_2100_c040122.nc</bndtvscon>
+
+<!-- Time-variant greenhouse gas surface value boundary dataset (relative to {csmdata}) -->
+<bndtvghg>atm/cam2/ggas/ghg_1870_2100_c040122.nc</bndtvghg>
+
+<!-- Aerosol optics lookup table dataset (relative to {csmdata}) -->
+<aeroptics>atm/cam2/rad/AerosolOptics_c040105.nc</aeroptics>
+
+<!-- DMS surface emissions (relative to {csmdata}) -->
+<bndtvdms               RESOLUTION="128x256"   PHYSICS="cam1"   >
+atm/cam2/scyc/DMS_emissions_128x256_clim_c040122.nc</bndtvdms>
+<bndtvdms               RESOLUTION="64x128"   PHYSICS="cam1"   >
+atm/cam2/scyc/DMS_emissions_64x128_c030722.nc</bndtvdms>
+<bndtvdms               RESOLUTION="32x64"   PHYSICS="cam1"   >
+atm/cam2/scyc/DMS_emissions_32x64_c030722.nc</bndtvdms>
+<bndtvdms DYNAMICS="fv" RESOLUTION="4x5"   PHYSICS="cam1"   >
+atm/cam2/scyc/DMS_emissions_4x5_c030722.nc</bndtvdms>
+
+<!-- oxidant data (relative to {csmdata}) -->
+<bndtvoxid               RESOLUTION="128x256"   PHYSICS="cam1"   >
+atm/cam2/scyc/oxid_128x256_L26_clim_c040112.nc</bndtvoxid>
+<bndtvoxid               RESOLUTION="64x128"   PHYSICS="cam1"   >
+atm/cam2/scyc/oxid_3d_64x128_L26_c030722.nc</bndtvoxid>
+<bndtvoxid               RESOLUTION="32x64"   PHYSICS="cam1"   >
+atm/cam2/scyc/oxid_3d_32x64_L26_c030722.nc</bndtvoxid>
+<bndtvoxid DYNAMICS="fv" RESOLUTION="4x5"   PHYSICS="cam1"   >
+atm/cam2/scyc/oxid_3d_4x5_L26_c030722.nc</bndtvoxid>
+
+<!-- SOx surface emissions (relative to {csmdata}) -->
+<bndtvsox               RESOLUTION="128x256"   PHYSICS="cam1"   >
+atm/cam2/scyc/SOx_emissions_128x256_L2_1870-1871_c040520.nc</bndtvsox>
+<bndtvsox               RESOLUTION="64x128"   PHYSICS="cam1"   >
+atm/cam2/scyc/SOx_emissions_64x128_L2_1870-1871_c040520.nc</bndtvsox>
+<bndtvsox               RESOLUTION="32x64"   PHYSICS="cam1"   >
+atm/cam2/scyc/SOx_emissions_32x64_L2_c030722.nc</bndtvsox>
+<bndtvsox DYNAMICS="fv" RESOLUTION="4x5"   PHYSICS="cam1"   >
+atm/cam2/scyc/SOx_emissions_4x5_L2_c030722.nc</bndtvsox>
+
+<!-- PCMDI ozone climatology dataset 64x1L60 interpolate to any resolution (relative to {csmdata}) -->
+<bndtvo>atm/cam2/ozone/pcmdio3.r8.64x1_L60_clim_c970515.nc</bndtvo>
+
+<!-- SST datasets (relative to {csmdata})  -->
+<bndtvs                RESOLUTION="128x256" PHYSICS="cam1"   OCEANMODEL="dom">
+atm/cam2/sst/sst_HadOIBl_bc_128x256_clim_c031031.nc</bndtvs>
+<bndtvs                RESOLUTION="64x128"  PHYSICS="cam1"   OCEANMODEL="dom">
+atm/cam2/sst/sst_HadOIBl_bc_64x128_clim_c020411.nc</bndtvs>
+<bndtvs                RESOLUTION="48x96"   PHYSICS="cam1"   OCEANMODEL="dom">
+atm/cam2/sst/sst_HadOIBl_bc_48x96_clim_c020411.nc</bndtvs>
+<bndtvs                RESOLUTION="32x64"   PHYSICS="cam1"   >
+atm/cam2/sst/sst_HadOIBl_bc_32x64_clim_c030228.nc</bndtvs>
+<bndtvs                RESOLUTION="8x16"    PHYSICS="cam1"   >
+atm/cam2/sst/sst_HadOIBl_bc_8x16_clim_c030107.nc</bndtvs>
+<bndtvs DYNAMICS="fv"  RESOLUTION="2x2.5"   PHYSICS="cam1"   OCEANMODEL="dom">
+atm/cam2/sst/sst_HadOIBl_bc_2x2.5_clim_c020531.nc</bndtvs>
+<bndtvs DYNAMICS="fv"  RESOLUTION="4x5"     PHYSICS="cam1"   >
+atm/cam2/sst/sst_HadOIBl_bc_4x5_clim_c030228.nc</bndtvs>
+<bndtvs DYNAMICS="fv"  RESOLUTION="10x15"   PHYSICS="cam1"   >
+atm/cam2/sst/sst_HadOIBl_bc_10x15_clim_c030303.nc</bndtvs>
+
+<!-- Greenhouse gas dataset (relative to {csmdata}) -->
+<bndtvg>atm/cam2/ggas/noaamisc.r8.nc</bndtvg>
+
+<!-- Length of run -->
+<nelapse>-1</nelapse>
+
+<!-- Orbit -->
+<iyear_ad>1950</iyear_ad>
+
+<!-- Timestep size -->
+<dtime DYNAMICS="eul" RESOLUTION="256x512" >300</dtime>
+<dtime DYNAMICS="eul" RESOLUTION="128x256" >600</dtime>
+<dtime DYNAMICS="eul" RESOLUTION="48x96"   >1800</dtime>
+<dtime DYNAMICS="eul" RESOLUTION="32x64"   >1800</dtime>
+<dtime DYNAMICS="eul" RESOLUTION="8x16"    >1800</dtime>
+<dtime DYNAMICS="fv"                       >1800</dtime>
+
+</camexp>

@@ -1,0 +1,41 @@
+Hi FSR,
+
+This directory has the code working for just one tagged region but not
+multiple tags. I'm leaving you to fix the multiple tagged region
+code. Follow what I did here and you should be able to extrapolate to
+fix the multiple tag code. 
+
+I removed the code that I had in history.F90 to write the tagmask to
+the history file. his didn't matter. Keep it if you like. It never
+worked perfectly anyway. If you decide to get rid of it, be sure to
+keep the history.F90 modification to the table length. If you get rid
+of it, you need to also get rid of code changes in diagnsotics.F90
+(you can stop compiling a file in your SourceMods directory by
+gzipping it).
+
+Previously I had masked the tagged isotope surface fluxes in 3
+separate routines for ocean (srfoce.F90), ice (ice_srf.F90) and land
+(wtrc_land.F90). Look at the code that I had in those files by
+searching "TAGGING". I took them out the code by first commenting and
+then finally just gzipping the whole file. I moved the tag masking
+code into physpkg.F90 where it masks the surface fluxes for all
+surface types at once. Look at the code there by searching
+TAGGING. Compare it to the code in the the three land types to see the
+major difference.
+
+Before I had:
+  tagged surface flux = mask * tagged surface flux
+
+But now I have
+  tagged surface flux = mask * total surface flux
+
+Think about why this was a bug.
+
+I suggest you try to modify the multiple tag code in the same fashion
+by moving the masking code into physpkg.F90 and gzipping the three
+component files. You shouldn't have to alter water_tracer.F90 at
+all. cYou only need to run the code for one month to check if the
+surface fluxes are exactly the same.
+
+Cecilia
+May 25, 2009

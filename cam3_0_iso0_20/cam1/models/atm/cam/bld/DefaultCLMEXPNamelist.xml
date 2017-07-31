@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+
+<!--
+
+       DefaultCLMEXPNamelist.xml                        Jan/2002
+
+       Values to use by default for creation of CLM model namelists.
+       The element names are the same as the corresponding namelist
+       variables.  Values that depend on the model configuration use
+       attributes to express the dependency.  The recognized attributes
+       are: DYNAMICS, RESOLUTION, PLEV, and PHYSICS.
+
+       $Id: DefaultCLMEXPNamelist.xml,v 1.1.6.16.2.1 2004/06/21 17:57:42 mvr Exp $
+-->
+<clmexp>
+
+<!-- Root directory of initial and boundary datasets from CAM distribution -->
+<csmdata>/fs/cgd/csm/inputdata</csmdata>
+
+<!-- The default filenames are given relative to the root directory
+     for the CLM2 data in the CAM distribution, i.e.,
+     {csmdata} where {csmdata} is the content of the
+     csmdata element.
+-->
+
+<!-- Plant function types (relative to {csmdata}) -->
+<fpftcon>lnd/clm2/pftdata/pft-physiology</fpftcon>
+
+<!-- Initial condition datasets (relative to {csmdata}) -->
+<finidat                RESOLUTION="128x256">lnd/clm2/inidata_2.1/cam/clmi_0000-09-01_128x256_c040422.nc</finidat>
+<finidat                RESOLUTION="64x128" >lnd/clm2/inidata_2.1/cam/clmi_0000-09-01_64x128_T42_USGS_c030609.nc</finidat>
+<finidat                RESOLUTION="48x96"  >lnd/clm2/inidata_2.1/cam/clmi_0000-09-01_48x96_c040420.nc</finidat>
+<finidat DYNAMICS="fv"  RESOLUTION="2x2.5"  >lnd/clm2/inidata_2.1/cam/clmi_0000-09-01_2x2.5_c040615.nc</finidat>
+
+<!-- Surface datasets (relative to {csmdata}) -->
+<fsurdat                RESOLUTION="128x256">lnd/clm2/srfdata/cam/clms_128x256_c031031.nc</fsurdat>
+<fsurdat                RESOLUTION="64x128" >lnd/clm2/srfdata/cam/clms_64x128_USGS_c030605.nc</fsurdat>
+<fsurdat                RESOLUTION="48x96"  >lnd/clm2/srfdata/cam/clms_48x96_c040420.nc</fsurdat>
+<fsurdat                RESOLUTION="32x64"  >lnd/clm2/srfdata/cam/clms_32x64_c030919.nc</fsurdat>
+<fsurdat                RESOLUTION="8x16"   >lnd/clm2/srfdata/cam/clms_8x16_c031108.nc</fsurdat>
+<fsurdat DYNAMICS="fv"  RESOLUTION="10x15"  >lnd/clm2/srfdata/cam/clms_10x15_cam3output.nc</fsurdat>
+<fsurdat DYNAMICS="fv"  RESOLUTION="4x5"    >lnd/clm2/srfdata/cam/clms_4x5_c030919.nc</fsurdat>
+<fsurdat DYNAMICS="fv"  RESOLUTION="2x2.5"  >lnd/clm2/srfdata/cam/clms_2x2.5_c031104.nc</fsurdat>
+
+<!-- Datasets needed to create surface datasets (relative to {csmdata}) -->
+<mksrf_fvegtyp>lnd/clm2/rawdata/mksrf_pft.nc</mksrf_fvegtyp>
+<mksrf_fsoitex>lnd/clm2/rawdata/mksrf_soitex.10level.nc</mksrf_fsoitex>
+<mksrf_fsoicol>lnd/clm2/rawdata/mksrf_soicol_clm2.nc</mksrf_fsoicol>
+<mksrf_flanwat>lnd/clm2/rawdata/mksrf_lanwat.nc</mksrf_flanwat>
+<mksrf_furban>lnd/clm2/rawdata/mksrf_urban.nc</mksrf_furban>
+<mksrf_fglacier>lnd/clm2/rawdata/mksrf_glacier.nc</mksrf_fglacier>
+<mksrf_flai>lnd/clm2/rawdata/mksrf_lai.nc</mksrf_flai>
+
+</clmexp>

@@ -1,0 +1,73 @@
+===================================================================================
+= water_isotopes
+===================================================================================
+! define the camexp namelist
+cam3_0_iso0_20/cam1/models/atm/cam/src/control/runtime_opts.F90:61:   use water_isotopes, only: wisotope 
+
+cam3_0_iso0_20/cam1/models/ice/csim4/wtrc_ice_srf.F90:35:  use water_isotopes,  only: wiso_get_roce, wiso_get_rsic
+cam3_0_iso0_20/cam1/models/ice/csim4/ice_data.F90:726:  use water_isotopes, only: wiso_get_rsic
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wtrc_land.F90:47:  use water_isotopes,  only: wiso_get_rstd
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/water_tracers.F90:49:  use water_isotopes, only: wisotope
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/tphysac.F90:44:   use water_isotopes,  only: wisotope
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/moistconvection.F90:216:   use water_isotopes, only: wiso_dicm
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wtrc_cldcond.F90:256:  use water_isotopes,  only: wisotope, wiso_dicm, wiso_delta
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wiso_cldliq_equilibrate.F90:38:  use water_isotopes,   only: wiso_alpl, wiso_alpi, wiso_liqvap_equil
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/tphysbc.F90:58:   use water_isotopes,  only: wisotope
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wiso_histogram.F90:101:  use water_isotopes, only: wiso_delta
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wtrc_camtune.F90:10:! are still specific to the isotope scheme are found in water_isotopes.F90
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wtrc_zm_conv.F90:609:   use water_isotopes,        only: wiso_alpl, wiso_akel, wiso_heff, wiso_liqvap_equil
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wiso_chemistry.F90:44:    use water_isotopes, only: wisotope, isph2o, isphdo
+cam3_0_iso0_20/cam1/models/atm/cam/src/ocnsice/som/wtrc_flxoce.F90:42:  use water_isotopes, only: wisotope, wiso_kmol, wiso_alpl,wiso_get_roce, &
+
+cam3_0_iso0_20/cam1/models/atm/cam/src/dynamics/eul/inidat.F90:2163:      use water_isotopes, only: wiso_get_rsic
+
+SourceMods/water_tracers.F90:70:  use water_isotopes, only: wisotope
+SourceMods/physpkg.F90:48:   use water_isotopes, only: isph2o, isphdo, isph218o
+SourceMods/runtime_opts.F90:66:   use water_isotopes, only: wisotope
+
+===================================================================================
+= water_tracers
+===================================================================================
+cam3_0_iso0_20/cam1/models/ice/csim4/ice_srf.F90:49:  use water_tracers, only: trace_water, ixh2oq, wtrc_qchk1
+cam3_0_iso0_20/cam1/models/ice/csim4/wtrc_ice_checkscale.F90:14:  use water_tracers, only: ixwti,ixwtx,wtrc_is_vap, wtrc_ratio,ixh2oq
+cam3_0_iso0_20/cam1/models/ice/csim4/wtrc_ice_srf.F90:33:  use water_tracers,   only: ixwti, ixwtx, wtrc_is_vap, iwspec, wtrc_ratio, &
+cam3_0_iso0_20/cam1/models/ice/csim4/camice.F90:38:  use water_tracers,   only: trace_water, wtrc_is_vap, ixwti, ixwtx, wtrc_qchk1, ixh2oq
+cam3_0_iso0_20/cam1/models/ice/csim4/ice_data.F90:457:  use water_tracers, only: trace_water
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wtrc_land.F90:108:   use water_tracers,   only: trace_water, ixwti, ixwtx, iwspec, &
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/tphysac.F90:43:   use water_tracers,   only: trace_water, wtrc_check, wtrc_qchk1, ixh2oq
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/moistconvection.F90:215:   use water_tracers, only: trace_water, wtrc_is_vap, iwspec, wtrc_ratio
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/initindx.F90:26:  use water_tracers, only: trace_water, wtrc_register
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/vertical_diffusion.F90:190:    use water_tracers, only: wtrc_qchk1, wtrc_qchk2,ixh2oq		! debug diags
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/turbulence.F90:272:    use  water_tracers, only: wtrc_qchk1, ixh2oq
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wtrc_cldcond.F90:44:  use water_tracers, only: wtrc_is_vap, ixwti, ixwtx
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wiso_cldliq_equilibrate.F90:37:  use water_tracers,    only: wtrc_is_vap, ixwti, ixwtx, iwspec
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/tphysbc.F90:55:   use water_tracers,   only: trace_water, ixwti, ixwtx, &
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wiso_histogram.F90:100:  use water_tracers,  only: iwspec
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/physpkg.F90:46:   use water_tracers,  only: trace_water, wtrc_check, wtrc_qchk1, ixh2oq
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/water_isotopes.F90:12:! used in the water_tracers module. As such, MAKE SURE you call these
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wtrc_zm_conv.F90:199:   use water_tracers,  only: wtrc_ratio
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/qneg4.F90:28:   use water_tracers, only: trace_water, ixwti, ixwtx, wtrc_is_vap, iwspec, wtrc_ratio
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/restart_physics.F90:45:      use water_tracers, only: trace_water, ixwti, ixwtx, wtrc_is_vap
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/physics_types.F90:128:    use water_tracers, only: trace_water, ixwti, ixwtx, wtrc_ratio, &
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wtrc_cld_sediment_tend.F90:37:    use water_tracers,   only: iwspec, wtrc_ratio
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/diagnostics.F90:221:   use water_tracers, only: trace_water,ixwti,ixwtx,wtrc_is_wtrc, wtrc_is_vap
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/zm_conv.F90:166:   use water_tracers, only: trace_water, lwtrczmlin
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/srfxfer.F90:24:   use water_tracers, only: wtrc_qchk1, ixh2oq
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/wiso_chemistry.F90:43:    use water_tracers,  only: ixwti, ixwtx, wtrc_is_vap, iwspec
+cam3_0_iso0_20/cam1/models/atm/cam/src/physics/cam1/inti.F90:39:   use water_tracers,      only: trace_water, lwtrcland, wtrc_init
+cam3_0_iso0_20/cam1/models/atm/cam/src/ocnsice/som/ocn_srf.F90:20:   use water_tracers, only: trace_water
+cam3_0_iso0_20/cam1/models/atm/cam/src/ocnsice/som/wtrc_flxoce.F90:41:  use water_tracers, only: trace_water, wtrc_is_vap, iwspec, ixwti, ixwtx
+cam3_0_iso0_20/cam1/models/atm/cam/src/ocnsice/dom/srfoce.F90:31:  use water_tracers, only: trace_water
+cam3_0_iso0_20/cam1/models/atm/cam/src/ocnsice/dom/wtrc_flxoce.F90:37:  use water_tracers, only: trace_water, wtrc_is_vap, iwspec, ixwti, ixwtx
+cam3_0_iso0_20/cam1/models/atm/cam/src/control/history.F90:2625:      use water_tracers, only: trace_water,lwtrcland,wtrc_is_vap,ixwti,ixwtx
+cam3_0_iso0_20/cam1/models/atm/cam/src/control/runtime_opts.F90:60:   use water_tracers, only: trace_water
+cam3_0_iso0_20/cam1/models/atm/cam/src/dynamics/eul/tfilt_massfix.F90:30:   use water_tracers, only: lnomfix
+cam3_0_iso0_20/cam1/models/atm/cam/src/dynamics/eul/inidat.F90:953:      use water_tracers, only: wtrc_implements_cnst, wtrc_init_cnst
+cam3_0_iso0_20/cam1/models/atm/cam/src/dynamics/eul/dp_coupling.F90:39:    use water_tracers, only: trace_water, wtrc_is_vap
+cam3_0_iso0_20/cam1/models/atm/cam/src/dynamics/fv/inidat.F90:100:      use water_tracers, only: trace_water, wtrc_implements_cnst, wtrc_init_cnst, 
+SourceMods/water_tracers.F90:4:module water_tracers
+SourceMods/history.F90:2626:      use water_tracers, only: trace_water,lwtrcland,wtrc_is_vap,ixwti,ixwtx
+SourceMods/physpkg.F90:46:   use water_tracers,  only: trace_water, wtrc_check, wtrc_qchk1, &
+SourceMods/water_isotopes.F90:12:! used in the water_tracers module. As such, MAKE SURE you call these
+SourceMods/runtime_opts.F90:65:   use water_tracers, only: trace_water
+SourceMods/diagnostics.F90:7:!   use water_tracers, only: trace_water,ixwti,ixwtx,wtrc_is_wtrc, wtrc_is_vap,tagmask
